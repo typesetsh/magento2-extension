@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <container name="root" htmlTag="div" htmlClass="document-wrapper">
+        <container name="page.header" htmlTag="header" htmlId="page" />
+        <container name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main">
+            <container name="main" label="Main Content Container" htmlTag="div" htmlClass="main"/>
+        </container>
+        <container name="page.footer" htmlTag="footer" htmlId="page" />
+    </container>
+</layout>

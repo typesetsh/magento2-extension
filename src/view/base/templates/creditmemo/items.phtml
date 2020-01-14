@@ -1,0 +1,32 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Items\Creditmemo $block */
+$creditmemo = $block->getCreditmemo();
+?>
+<div class="table-wrapper table-order-items invoice">
+    <table class="table-order-items invoice">
+        <thead>
+            <tr>
+                <th class="col name"><?= $block->escapeHtml(__('Product Name')) ?></th>
+                <th class="col sku"><?= $block->escapeHtml(__('SKU')) ?></th>
+                <th class="col price"><?= $block->escapeHtml(__('Price')) ?></th>
+                <th class="col qty"><?= $block->escapeHtml(__('Qty')) ?></th>
+                <th class="col subtotal"><?= $block->escapeHtml(__('Subtotal')) ?></th>
+                <th class="col discount"><?= $block->escapeHtml(__('Discount')) ?></th>
+                <th class="col total"><?= $block->escapeHtml(__('Total')) ?></th>
+            </tr>
+        </thead>
+        <?php $_items = $creditmemo->getItemsCollection() ?>
+        <?php foreach ($_items as $_item) : ?>
+            <?php if (!$_item->getOrderItem()->getParentItem()) : ?>
+                <tbody>
+                    <?= $block->getItemHtml($_item) ?>
+                </tbody>
+            <?php endif ?>
+        <?php endforeach ?>
+        <tfoot>
+            <?= $block->getCreditmemoTotalsHtml($creditmemo) ?>
+        </tfoot>
+    </table>
+
+    <?= $block->getCommentsHtml($creditmemo) ?>
+</div>

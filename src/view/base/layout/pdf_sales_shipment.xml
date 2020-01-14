@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="pdf">
+    <update handle="pdf_letter"/>
+    <update handle="sales_order_print_shipment_renderers" />
+    <update handle="sales_order_item_price"/>
+    <head>
+        <css src="Typesetsh_Pdf::css/shipment.css" />
+    </head>
+    <body>
+        <referenceContainer name="letterhead-right">
+            <block name="shipment-head-right" class="Typesetsh\Pdf\Block\Shipment" template="Typesetsh_Pdf::shipment/head.phtml" before="letterhead-right.business" />
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block name="shipment" class="Typesetsh\Pdf\Block\Shipment" template="Typesetsh_Pdf::shipment/letter.phtml">
+                <block class="Typesetsh\Pdf\Block\Items\Shipment" name="sales.order.print.shipment.items" as="items" template="Typesetsh_Pdf::shipment/items.phtml">
+                    <block class="Magento\Framework\View\Element\RendererList" name="sales.order.print.shipment.renderers" as="renderer.list" />
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

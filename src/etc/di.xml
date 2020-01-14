@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Typesetsh\Pdf\Model\Sales\Invoice" />
+    <preference for="Magento\Sales\Model\Order\Pdf\Creditmemo" type="Typesetsh\Pdf\Model\Sales\Creditmemo" />
+    <preference for="Magento\Sales\Model\Order\Pdf\Shipment" type="Typesetsh\Pdf\Model\Sales\Shipment" />
+    <type name="Typesetsh\Pdf\Model\Sales\Invoice">
+        <arguments>
+            <argument name="resultPageFactory" xsi:type="object">PdfPageFactory</argument>
+        </arguments>
+    </type>
+    <type name="Typesetsh\Pdf\Model\Sales\Creditmemo">
+        <arguments>
+            <argument name="resultPageFactory" xsi:type="object">PdfPageFactory</argument>
+        </arguments>
+    </type>
+    <type name="Typesetsh\Pdf\Model\Sales\Shipment">
+        <arguments>
+            <argument name="resultPageFactory" xsi:type="object">PdfPageFactory</argument>
+        </arguments>
+    </type>
+    <type name="Typesetsh\Pdf\Model\Result\Page">
+        <arguments>
+            <argument name="layoutReaderPool" xsi:type="object">pageConfigRenderPool</argument>
+            <argument name="generatorPool" xsi:type="object">pageLayoutGeneratorPool</argument>
+            <argument name="template" xsi:type="string">Typesetsh_Pdf::root.phtml</argument>
+            <argument name="isIsolated" xsi:type="boolean">true</argument>
+        </arguments>
+    </type>
+    <virtualType name="PdfPageFactory" type="Magento\Framework\View\Result\PageFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Typesetsh\Pdf\Model\Result\Page</argument>
+        </arguments>
+    </virtualType>
+</config>

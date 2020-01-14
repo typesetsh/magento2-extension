@@ -1,0 +1,16 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Address $block */
+
+?>
+<address class="sender">
+    <?php echo $block->getStoreName() ?> •
+    <?php echo $block->getStreetLine1() ?> •
+    <?php if ($street2 = $block->getStreetLine2()): ?>
+        <?php echo $street2 ?> •
+    <?php endif ?>
+    <?php echo $block->getPostcode() ?> <?php echo $block->getCity() ?> •
+    <?php echo $block->getCountry() ?>
+</address>
+<address class="recipient">
+    <?php echo $block->getAddress() ?>
+</address>

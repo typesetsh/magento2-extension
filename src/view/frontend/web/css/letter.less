@@ -1,0 +1,75 @@
+
+
+header#page {
+    position: running(header);
+    text-align: right;
+}
+
+header#page img {
+    width: 50mm;
+}
+
+
+
+section#letterhead {
+    min-height: 60mm;
+}
+
+/*
+ * Absolute position to fit the letter window
+ */
+section#letterhead .window {
+    position: absolute;
+    box-sizing: border-box;
+    left: 25mm;
+    top: 35mm;
+    height: 40mm;
+    width: 90mm;
+    font-size: 10pt;
+    padding: 0;
+}
+
+
+section#letterhead .sender {
+    font-size: 0.7em;
+    color: #999;
+    margin-bottom: 1em;
+}
+
+section#letterhead .right {
+    float: right;
+    width: 40%;
+}
+
+
+
+section#footer {
+    position: running(footer);
+    font-size: 8pt;
+    line-height: 140%;
+    color: #666;
+
+    .logo > img {
+        height: 5mm;
+        display: block;
+        margin-bottom: 0.5em;
+    }
+
+    .col1 {
+        float:left;
+        width: 25%;
+        margin-top: 5mm;
+    }
+    .col2 {
+        float:left;
+        width: 35%;
+        margin-top: 5mm;
+    }
+    .col3 {
+        float:right;
+        width: 30%;
+        margin-top: 5mm;
+    }
+
+
+}

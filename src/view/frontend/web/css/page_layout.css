@@ -1,0 +1,65 @@
+/**
+ * LESS does not understand @area at-rule as this is not yet official CSS
+ * and can be subject of change.
+ * Therefor this file is can not part of less
+ */
+@page {
+    size: A4;
+    margin: 30mm 10mm 80mm 25mm;
+
+    @area perforate-mark {
+        left: 0;
+        top: 148.5mm;
+        width: 3mm;
+        border-bottom: 0.2mm solid #ccc;
+    }
+    @area fold-mark-left-top {
+        left: 0mm;
+        top: 90mm;
+        width: 6mm;
+        border-bottom: 0.2mm dashed #ccc;
+    }
+    @area fold-mark-left-bottom {
+        left: 0mm;
+        top: 195mm;
+        width: 6mm;
+        border-bottom: 0.2mm dashed #ccc;
+    }
+    @area fold-mark-right-top {
+        right: 0mm;
+        top: 90mm;
+        width: 6mm;
+        border-bottom: 0.2mm dashed #ccc;
+    }
+    @area fold-mark-right-bottom {
+        right: 0mm;
+        top: 195mm;
+        width: 6mm;
+        border-bottom: 0.2mm dashed #ccc;
+    }
+
+
+    @top-center {
+        content: 'Page ' counter(page) ' of ' counter(pages);
+        vertical-align: top;
+        padding-top: 10mm;
+    }
+
+    @area header {
+        content: element(header);
+        top: 10mm;
+        right: 10mm;
+        left: 20mm;
+    }
+    @area footer {
+        content: element(footer);
+        padding: 5mm 10mm;
+        bottom: 0mm;
+        height: 50mm;
+        right: 0mm;
+        left: 0mm;
+        background: #F0F0F0;
+        border-top: 1mm solid #E0E0E0;
+    }
+
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="pdf">
+    <head>
+        <css src="Typesetsh_Pdf::css/letter.css" />
+    </head>
+    <body>
+        <referenceContainer name="main">
+            <container name="letterhead" htmlTag="section" htmlId="letterhead" label="Letterhead" before="content">
+                <container name="letterhead-address" htmlTag="div" htmlClass="window" label="Letterhead" before="content">
+                    <block name="address" class="Typesetsh\Pdf\Block\Address" template="Typesetsh_Pdf::letter/address.phtml" />
+                </container>
+                <container name="letterhead-right" htmlTag="div" htmlClass="right" label="Letterhead" before="content">
+                    <block name="letterhead-right.business" class="Typesetsh\Pdf\Block\Letter" template="Typesetsh_Pdf::letter/business.phtml" />
+                </container>
+            </container>
+            <container name="footer" htmlTag="section" htmlId="footer" label="Footer" before="content" after="letterhead">
+                <block name="footer_content" class="Typesetsh\Pdf\Block\Letter" template="Typesetsh_Pdf::letter/footer.phtml">
+                    <block as="logo" class="Magento\Theme\Block\Html\Header\Logo" template="Typesetsh_Pdf::header/logo.phtml" />
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

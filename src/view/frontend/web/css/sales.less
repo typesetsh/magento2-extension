@@ -1,0 +1,162 @@
+
+
+
+html {
+    font-size: 9pt;
+}
+
+h1 {
+    font-size: 14pt;
+    clear: both;
+    margin: 0;
+}
+
+.comment {
+    border-left: 1mm solid red;
+    background: #F0F0F0;
+    font-size: 0.9em;
+    padding: 1mm 2mm;
+    margin: 2mm 0;
+}
+
+h3 {
+    margin: 1em 0 0.5em 0;
+}
+table.information {
+    border: none 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+table.information td, table.information th {
+    border: none 0;
+    text-align: left;
+    padding: 0;
+
+
+}
+table.information th {
+    font-weight: bold;
+    padding-right: 5mm;
+}
+table.information th::after {
+    content: ':';
+}
+
+
+section.order-information::after {
+    content: ' ';
+    display: block;
+    clear: both;
+}
+
+.table-wrapper {
+    clear: both;
+}
+
+
+table.table-order-items {
+    clear: both;
+    width: 100%;
+    border: none;
+    font-size: 9pt;
+    margin: 5mm 0;
+
+    th {
+        font-weight: bold;
+    }
+    td, th {
+        border: none 0;
+        padding: 1mm 0;
+    }
+
+    thead th {
+        border-bottom: 0.5mm solid black;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: 0.2mm solid #eee;
+    }
+
+
+    .col.qty {
+        text-align: center;
+    }
+    .col.price, .col.subtotal {
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    tfoot {
+
+        th {
+            font-weight: bold;
+            text-align: right;
+        }
+        td {
+            text-align: right;
+        }
+
+        .grand_total .price {
+            font-weight: bold;
+            font-size: 1.1em;
+            border-bottom: 1mm double black;
+        }
+
+    }
+}
+
+
+.item-options {
+    display: block;
+    margin: 0.5em 0;
+
+    dt {
+        display: block;
+        font-weight: bold;
+        width: 50%;
+        max-width: 20mm;
+        float: left;
+        clear: left;
+    }
+
+    dd {
+        display: block;
+        width: 50%;
+        float: left;
+    }
+
+    &::after {
+        display: block;
+        content: ' ';
+        clear: both;
+    }
+
+}
+
+table.totals {
+    margin-top: 5mm;
+    float: right;
+    border: none;
+    border-collapse: separate;
+    padding: 0;
+    border-spacing: 0;
+
+}
+table.totals td, table.totals th {
+    border: none;
+    border-width: 0;
+    line-height: 100%;
+}
+table.totals th {
+    font-weight: bold;
+    padding-right: 5mm;
+}
+
+table.totals .grand td, table.totals .grand th {
+    border-bottom: 1mm double black;
+    font-size: 1.1em;
+    padding-top: 2mm;
+}
+table.totals td {
+    text-align: right;
+}

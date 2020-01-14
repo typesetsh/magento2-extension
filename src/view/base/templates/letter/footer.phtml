@@ -1,0 +1,18 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Letter $block */
+?>
+<div class="col1">
+    <?= $block->getChildHtml('logo') ?>
+    <?= $block->getStreetLine1() ?><br />
+    <?php if ($street2 = $block->getStreetLine2()): ?>
+        <?= $street2 ?><br />
+    <?php endif ?>
+    <?= $block->getPostcode() ?> <?= $block->getCity() ?><br />
+    <?= $block->getCountry() ?>
+</div>
+<div class="col2">
+    <?= $block->getChildHtml('col2') ?>
+</div>
+<div class="col3">
+    <?= $block->getChildHtml('col3') ?>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="pdf">
+    <update handle="pdf_letter"/>
+    <update handle="sales_order_print_creditmemo_renderers" />
+    <update handle="sales_order_item_price"/>
+    <head>
+        <css src="Typesetsh_Pdf::css/creditmemo.css" />
+    </head>
+    <body>
+        <referenceContainer name="letterhead-right">
+            <block name="creditmemo-head-right" class="Typesetsh\Pdf\Block\Creditmemo" template="Typesetsh_Pdf::creditmemo/head.phtml" before="letterhead-right.business" />
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block name="creditmemo" class="Typesetsh\Pdf\Block\Creditmemo" template="Typesetsh_Pdf::creditmemo/letter.phtml">
+                <block class="Typesetsh\Pdf\Block\Items\Creditmemo" name="sales.order.print.creditmemo.items" as="items" template="Typesetsh_Pdf::creditmemo/items.phtml">
+                    <block class="Magento\Framework\View\Element\RendererList" name="sales.order.print.creditmemo.renderers" as="renderer.list" />
+                    <block class="Magento\Sales\Block\Order\Creditmemo\Totals" name="creditmemo_totals" template="Magento_Sales::order/totals.phtml">
+                        <arguments>
+                            <argument name="label_properties" xsi:type="string">colspan="6" class="mark"</argument>
+                            <argument name="value_properties" xsi:type="string">class="amount"</argument>
+                        </arguments>
+                        <block class="Magento\Tax\Block\Sales\Order\Tax" name="tax" template="Magento_Tax::order/tax.phtml"/>
+                    </block>
+                    <block class="Magento\Sales\Block\Order\Comments" name="creditmemo_comments" template="Magento_Sales::order/comments.phtml"/>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

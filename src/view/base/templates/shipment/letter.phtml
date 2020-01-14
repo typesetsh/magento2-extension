@@ -1,0 +1,41 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Shipment $block */
+
+$shipment = $block->getShipment();
+$order = $shipment->getOrder();
+?>
+
+
+<h1><?= $block->escapeHtml(__('Shipment')) ?> #<?= $block->escapeHtml($shipment->getIncrementId()) ?></h1>
+<p><?= $block->escapeHtml(__('Date')) ?>: <?= $block->formatDate($shipment->getCreatedAt(), IntlDateFormatter::LONG) ?></p>
+
+
+<section class="order-information">
+
+    <div class="left">
+        <div class="billing-address">
+            <h3><?= $block->escapeHtml(__('Billing Address')) ?></h3>
+
+            <?php $billing = $shipment->getBillingAddress() ?>
+            <address><?= /* @noEscape */ $block->formatAddress($billing, 'html') ?></address>
+        </div>
+        <div class="payment">
+            <h3><?= $block->escapeHtml(__('Payment Method')) ?></h3>
+            <?= $block->getInfoBlockHtml() ?>
+        </div>
+    </div>
+    <div class="right">
+        <div class="shipping-address">
+            <h3><?= $block->escapeHtml(__('Shipping Address')) ?></h3>
+
+            <?php $shipping = $shipment->getShippingAddress() ?>
+            <address><?= /* @noEscape */ $block->formatAddress($shipping, 'html') ?></address>
+        </div>
+        <div class="shipping">
+            <h3><?= $block->escapeHtml(__('Shipping Method')) ?></h3>
+            <?= $block->escapeHtml($shipment->getOrder()->getShippingDescription()) ?>
+        </div>
+    </div>
+</section>
+
+<?= $block->getChildHtml('items') ?>

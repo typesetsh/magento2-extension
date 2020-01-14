@@ -1,0 +1,34 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Invoice $block */
+
+$invoice = $block->getInvoice();
+$order = $invoice->getOrder();
+?>
+
+
+<h1><?= $block->escapeHtml(__('Invoice')) ?> #<?= $block->escapeHtml($block->getInvoice()->getIncrementId()) ?></h1>
+<p><?= $block->escapeHtml(__('Date')) ?>: <?= $block->formatDate($block->getInvoice()->getCreatedAt(), IntlDateFormatter::LONG) ?></p>
+
+
+<section class="order-information">
+    <div class="payment">
+        <h3><?= $block->escapeHtml(__('Payment Method')) ?></h3>
+        <?= $block->getInfoBlockHtml() ?>
+    </div>
+
+    <?php if (!$order->getIsVirtual()) : ?>
+        <div class="shipping-address">
+            <h3><?= $block->escapeHtml(__('Shipping Address')) ?></h3>
+
+            <?php $shipping = $invoice->getShippingAddress() ?>
+            <address><?= /* @noEscape */ $block->formatAddress($shipping, 'html') ?></address>
+        </div>
+        <div class="shipping">
+            <h3><?= $block->escapeHtml(__('Shipping Method')) ?></h3>
+            <?= $block->escapeHtml($block->getInvoice()->getOrder()->getShippingDescription()) ?>
+        </div>
+    <?php endif ?>
+
+</section>
+
+<?= $block->getChildHtml('items') ?>

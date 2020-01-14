@@ -1,0 +1,28 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Shipment $block */
+?>
+
+
+<h3><?= $block->escapeHtml(__('Shipment')) ?></h3>
+<table class="information">
+    <tr>
+        <th><?= $block->escapeHtml(__('Packing Slip #')) ?></th>
+        <td><?= $block->escapeHtml($block->getShipment()->getIncrementId()) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Order #')) ?></th>
+        <td><?= $block->escapeHtml($block->getShipment()->getOrder()->getIncrementId()) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Customer')) ?></th>
+        <td><?= $block->escapeHtml($block->getShipment()->getOrder()->getCustomerEmail()) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Date')) ?></th>
+        <td><?= $block->formatDate($block->getShipment()->getCreatedAt(), IntlDateFormatter::MEDIUM) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Shipping')) ?></th>
+        <td><?= $block->escapeHtml($block->getShipment()->getOrder()->getShippingDescription()) ?></td>
+    </tr>
+</table>

@@ -1,0 +1,32 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Creditmemo $block */
+?>
+
+
+<h3><?= $block->escapeHtml(__('Credit Memo')) ?></h3>
+<table class="information">
+    <tr>
+        <th><?= $block->escapeHtml(__('Customer')) ?></th>
+        <td><?= $block->escapeHtml($block->getCreditmemo()->getOrder()->getCustomerEmail()) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Credit Memo #')) ?></th>
+        <td><?= $block->escapeHtml($block->getCreditmemo()->getIncrementId()) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Order #')) ?></th>
+        <td><?= $block->escapeHtml($block->getCreditmemo()->getOrder()->getIncrementId()) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Date')) ?></th>
+        <td><?= $block->formatDate($block->getCreditmemo()->getCreatedAt(), IntlDateFormatter::MEDIUM) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Payment')) ?></th>
+        <td><?= $block->escapeHtml($block->getPaymentLabel($block->getCreditmemo()->getOrder()->getPayment()->getMethod())) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Shipping')) ?></th>
+        <td><?= $block->escapeHtml($block->getCreditmemo()->getOrder()->getShippingDescription()) ?></td>
+    </tr>
+</table>

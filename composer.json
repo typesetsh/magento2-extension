@@ -1,0 +1,41 @@
+{
+    "name": "typesetsh/magento2-extension",
+    "description": "Magento2 typeset.sh extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jacob Siefer",
+            "email": "mail@jsiefer.de"
+        }
+    ],
+    "require": {
+        "magento/framework": "^102.0",
+        "magento/module-sales": "^102.0",
+        "magento/module-store": "^101.0",
+        "magento/module-directory": "^100.0",
+        "typesetsh/typesetsh": "^0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Typesetsh\\Pdf\\": "src/"
+        },
+        "files": ["src/registration.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Typesetsh\\Pdf\\": "tests/unit/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        },{
+            "type": "composer",
+            "url": "https://packages.typeset.sh"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    }
+}

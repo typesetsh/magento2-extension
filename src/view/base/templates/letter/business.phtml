@@ -1,0 +1,17 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Creditmemo $block */
+?>
+
+<h3><?= $block->escapeHtml(__('Business Serviceline')) ?></h3>
+<table class="information">
+    <tbody>
+    <tr>
+        <th><?= $block->escapeHtml(__('Phone')) ?></th>
+        <td><?= $block->escapeHtml($block->getPhoneNumber()) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('E-Mail')) ?></th>
+        <td><?= $block->escapeHtml($block->getEmailUs()) ?></td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="pdf">
+    <update handle="pdf_head_blocks"/>
+    <body>
+        <referenceContainer name="page.header">
+            <block class="Magento\Theme\Block\Html\Header\Logo" template="Typesetsh_Pdf::header/logo.phtml" />
+        </referenceContainer>
+        <referenceContainer name="main">
+            <container name="content" label="Main Content Area"/>
+        </referenceContainer>
+    </body>
+</page>

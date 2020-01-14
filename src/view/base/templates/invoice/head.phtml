@@ -1,0 +1,24 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Invoice $block */
+?>
+
+
+<h3><?= $block->escapeHtml(__('Invoice')) ?></h3>
+<table class="information">
+    <tr>
+        <th><?= $block->escapeHtml(__('Customer')) ?></th>
+        <td><?= $block->escapeHtml($block->getInvoice()->getOrder()->getCustomerEmail()) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Date')) ?></th>
+        <td><?= $block->formatDate($block->getInvoice()->getCreatedAt(), IntlDateFormatter::MEDIUM) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Payment')) ?></th>
+        <td><?= $block->escapeHtml($block->getPaymentLabel($block->getInvoice()->getOrder()->getPayment()->getMethod())) ?></td>
+    </tr>
+    <tr>
+        <th><?= $block->escapeHtml(__('Shipping')) ?></th>
+        <td><?= $block->escapeHtml($block->getInvoice()->getOrder()->getShippingDescription()) ?></td>
+    </tr>
+</table>

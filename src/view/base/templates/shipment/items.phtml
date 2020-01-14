@@ -1,0 +1,23 @@
+<?php
+/** @var \Typesetsh\Pdf\Block\Items\Shipment $block */
+$invoice = $block->getShipment();
+?>
+<div class="table-wrapper table-order-items invoice">
+    <table class="table-order-items invoice">
+        <thead>
+            <tr>
+                <th class="col name"><?= $block->escapeHtml(__('Product Name')) ?></th>
+                <th class="col sku"><?= $block->escapeHtml(__('SKU')) ?></th>
+                <th class="col qty"><?= $block->escapeHtml(__('Qty')) ?></th>
+            </tr>
+        </thead>
+        <?php $_items = $invoice->getItemsCollection() ?>
+        <?php foreach ($_items as $_item) : ?>
+            <?php if (!$_item->getOrderItem()->getParentItem()) : ?>
+                <tbody>
+                    <?= $block->getItemHtml($_item) ?>
+                </tbody>
+            <?php endif ?>
+        <?php endforeach ?>
+    </table>
+</div>
