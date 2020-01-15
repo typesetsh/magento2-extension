@@ -1,6 +1,8 @@
 {
     "name": "typesetsh/magento2-extension",
     "description": "Magento2 typeset.sh extension",
+    "type": "magento2-module",
+    "version": "1.0.1",
     "license": "MIT",
     "authors": [
         {
