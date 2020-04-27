@@ -12,6 +12,12 @@ This extension only replaces the `Magento\Sales\Model\Order\Pdf\*` classes.
 
 Any adjustment to the PDF can then simply be done in your theme.
 
+## Example
+![PDF Sample Invoice](docs/invoice.png)
+
+Adjustments to the PDF can be simple done in your theme folder.
+Here is a [sample pdf ouptut file](docs/example-invoice.pdf).
+
 
 ## Installation via Composer
 

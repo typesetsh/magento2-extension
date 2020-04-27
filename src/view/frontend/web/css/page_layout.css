@@ -5,7 +5,7 @@
  */
 @page {
     size: A4;
-    margin: 30mm 10mm 80mm 25mm;
+    margin: 30mm 10mm 65mm 25mm;
 
     @area perforate-mark {
         left: 0;
@@ -53,9 +53,10 @@
     }
     @area footer {
         content: element(footer);
+        box-sizing: border-box;
         padding: 5mm 10mm;
         bottom: 0mm;
-        height: 50mm;
+        height: 60mm;
         right: 0mm;
         left: 0mm;
         background: #F0F0F0;

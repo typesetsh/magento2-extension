@@ -22,32 +22,43 @@ h1 {
 h3 {
     margin: 1em 0 0.5em 0;
 }
+
+
+section#letterhead .right {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+
+    h3 {
+        text-align: right;
+    }
+}
+
+
 table.information {
     border: none 0;
     border-collapse: separate;
     border-spacing: 0;
-}
-table.information td, table.information th {
-    border: none 0;
-    text-align: left;
-    padding: 0;
 
+    th {
+        border: none;
+        text-align: left;
+        padding: 0;
+        font-weight: bold;
+        padding-right: 5mm;
+        text-align: left;
 
-}
-table.information th {
-    font-weight: bold;
-    padding-right: 5mm;
-}
-table.information th::after {
-    content: ':';
+        &::after {
+            content: ':';
+        }
+    }
+    td {
+        border: none 0;
+        text-align: right;
+        padding: 0;
+    }
 }
 
-
-section.order-information::after {
-    content: ' ';
-    display: block;
-    clear: both;
-}
 
 .table-wrapper {
     clear: both;
@@ -57,20 +68,26 @@ section.order-information::after {
 table.table-order-items {
     clear: both;
     width: 100%;
-    border: none;
+    border: none 0;
     font-size: 9pt;
     margin: 5mm 0;
 
     th {
         font-weight: bold;
+        white-space: nowrap;
     }
     td, th {
         border: none 0;
-        padding: 1mm 0;
+        padding: 1mm 2mm;
     }
 
     thead th {
+        text-align: left;
         border-bottom: 0.5mm solid black;
+    }
+
+    table.items tr:nth-child(even) td {
+        background: #f3f3f3;
     }
 
     tbody tr:last-child td {
@@ -83,6 +100,9 @@ table.table-order-items {
     }
     .col.price, .col.subtotal {
         text-align: right;
+        white-space: nowrap;
+    }
+    .col.sku {
         white-space: nowrap;
     }
 
@@ -107,7 +127,7 @@ table.table-order-items {
 
 
 .item-options {
-    display: block;
+    display: flow-root;
     margin: 0.5em 0;
 
     dt {
@@ -125,25 +145,19 @@ table.table-order-items {
         float: left;
     }
 
-    &::after {
-        display: block;
-        content: ' ';
-        clear: both;
-    }
-
 }
 
 table.totals {
     margin-top: 5mm;
     float: right;
-    border: none;
+    border: none 0;
     border-collapse: separate;
     padding: 0;
     border-spacing: 0;
 
 }
 table.totals td, table.totals th {
-    border: none;
+    border: none 0;
     border-width: 0;
     line-height: 100%;
 }

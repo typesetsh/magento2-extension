@@ -89,7 +89,7 @@ class HtmlConverter
     {
         $pages = new Pdf\Pages();
         foreach ($this->pages as $pageBox) {
-            $page = Pdf\Page::create($pageBox->outerWidth, $pageBox->outerHeight);
+            $page = Pdf\Page::create($pageBox->width, $pageBox->height);
             $pages->Kids[] = $page;
 
             $operations = [];
