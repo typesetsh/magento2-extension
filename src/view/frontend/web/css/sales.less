@@ -25,11 +25,14 @@ h3 {
 
 
 section#letterhead .right {
-    display: flex;
+    /*display: flex;
     flex-flow: column nowrap;
-    align-items: flex-end;
+    align-items: flex-end;*/
+    max-width: 80mm;
 
     h3 {
+        clear: both;
+        float:right;
         text-align: right;
     }
 }
@@ -39,6 +42,8 @@ table.information {
     border: none 0;
     border-collapse: separate;
     border-spacing: 0;
+    float: right;
+    clear: both;
 
     th {
         border: none;
@@ -111,9 +116,11 @@ table.table-order-items {
         th {
             font-weight: bold;
             text-align: right;
+            vertical-align: baseline;
         }
         td {
             text-align: right;
+            vertical-align: baseline;
         }
 
         .grand_total .price {
@@ -141,8 +148,8 @@ table.table-order-items {
 
     dd {
         display: block;
-        width: 50%;
         float: left;
+        padding: 0;
     }
 
 }
