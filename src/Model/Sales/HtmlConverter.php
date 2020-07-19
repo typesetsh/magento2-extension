@@ -3,9 +3,11 @@ namespace Typesetsh\Pdf\Model\Sales;
 
 use jsiefer\Css;
 use jsiefer\IO;
-use jsiefer\Pdf;
+use typesetsh\Document;
 use Typesetsh\Pdf\Model;
+use typesetsh\Pdf;
 use typesetsh\Html;
+use typesetsh;
 
 class HtmlConverter
 {
@@ -15,113 +17,55 @@ class HtmlConverter
     private $parser;
 
     /**
-     * @var Css\Engine\LayoutEngine
-     */
-    private $layoutEngine;
-
-    /**
-     * @var Pdf\Graphic\ContentStream
-     */
-    private $contentWriter;
-
-    /**
-     * @var Css\Renderer\Pdf
+     * @var Pdf\Renderer
      */
     private $renderer;
 
     /**
-     * @var Css\Engine\Box[]
+     * @var Document[]
      */
-    private $pages = [];
+    private $documents = [];
 
     /**
-     * @var \Closure
+     * @var callable
      */
     private $resolveUri;
 
-    /**
-     * @var Model\Resource\Cache
-     */
-    private $cache;
 
     /**
      * @param Html\Parser|null $parser
-     * @param Pdf\Graphic\ContentStream $contentWriter
-     * @param Css\Renderer\Pdf $renderer
-     * @param Css\Engine\LayoutEngine $layoutEngine
-     * @param Model\Resource\Cache $cache
+     * @param Pdf\Renderer $renderer
+     * @param Model\UriResolver\Http[] $schemeResolvers
      */
     public function __construct(
         Html\Parser $parser,
-        Pdf\Graphic\ContentStream $contentWriter,
-        Css\Renderer\Pdf $renderer,
-        Css\Engine\LayoutEngine $layoutEngine,
-        Model\Resource\Cache $cache
+        Pdf\Renderer $renderer,
+        array $schemeResolvers
     ) {
         $this->parser = $parser;
-        $this->contentWriter = $contentWriter;
-        $this->layoutEngine = $layoutEngine;
         $this->renderer = $renderer;
-        $this->cache = $cache;
 
-        $this->resolveUri = $this->setupUriResolver();
+        $this->resolveUri = new typesetsh\UriResolver($schemeResolvers);
     }
-
     /**
      * @param string $html
      *
-     * @return \typesetsh\Document
+     * @return Document
      */
     public function append(string $html)
     {
-        $document = $this->parser->parse($html, $this->resolveUri);
-
-        $documentBox = $this->layoutEngine->compose($document->dom, $document->stylesheet);
-        array_push($this->pages, ...$documentBox->children);
-
-        return $document;
+        return $this->documents[] = $this->parser->parse($html, $this->resolveUri);
     }
 
     /**
-     * @return Pdf\Document
+     * @return typesetsh\Result
      */
-    public function render(): Pdf\Document
+    public function render(): typesetsh\Result
     {
-        $pages = new Pdf\Pages();
-        foreach ($this->pages as $pageBox) {
-            $page = Pdf\Page::create($pageBox->width, $pageBox->height);
-            $pages->Kids[] = $page;
-
-            $operations = [];
-            $this->renderer->render($pageBox, $operations);
-
-            $output = $this->contentWriter->write($page->Resources, $operations, $page);
-            $output = new IO\Memory($output);
-
-            $page->Contents->data($output);
+        if (!$this->documents) {
+            throw new \RuntimeException("No content added. See append()");
         }
 
-        $document = new Pdf\Document();
-        $document->Catalog = new Pdf\Catalog();
-        $document->Catalog->Pages = $pages;
-
-        return $document;
-    }
-
-    /**
-     * @return \Closure
-     */
-    protected function setupUriResolver(): \Closure
-    {
-        return function (string $uri, ?string $baseUri = '') {
-            if ($uri[0] === '/') {
-                $uri = $baseUri . $uri;
-            }
-            if (strpos($uri, 'https://') === 0 || strpos($uri, 'http://') === 0) {
-                return $this->cache->fetch($uri);
-            }
-
-            return '';
-        };
+        return $this->renderer->run($this->documents,  1000);
     }
 }

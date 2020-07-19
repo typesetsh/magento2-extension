@@ -81,9 +81,9 @@ class ShipmentTest extends Pdf\TestCase
                 }
                 $this->output[] = $html;
             }
-            public function render(): \jsiefer\Pdf\Document
+            public function render(): \typesetsh\Result
             {
-                return new \jsiefer\Pdf\Document();
+                return new \typesetsh\Result(function () {});
             }
         };
 

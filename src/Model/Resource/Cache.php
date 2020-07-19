@@ -1,20 +1,29 @@
 <?php
+/**
+ * @copyright Copyright (c) 2020 Jacob Siefer
+ *
+ * @see LICENSE
+ */
+declare(strict_types=1);
+
 namespace Typesetsh\Pdf\Model\Resource;
 
 use typesetsh;
 use Magento\Framework\App;
 use Magento\Framework\Filesystem;
 
-class Cache extends typesetsh\Resource\Cache
+/**
+ * Simple resource cache using Magentos var file system.
+ */
+class Cache
 {
     /**
-     * @var App\State
+     * @var typesetsh\Resource\Cache
      */
-    private $appState;
+    private $cache;
 
     /**
      * @param App\Filesystem\DirectoryList $dir
-     * @param App\State $appState
      * @param Filesystem $filesystem
      * @param string $dirName
      * @param int $downloadLimit
@@ -23,14 +32,10 @@ class Cache extends typesetsh\Resource\Cache
      */
     public function __construct(
         App\Filesystem\DirectoryList $dir,
-        App\State $appState,
         Filesystem $filesystem,
         string $dirName = 'typesetsh',
         int $downloadLimit = 52428800
     ) {
-        $this->appState = $appState;
-        $this->downloadLimit = $downloadLimit;
-
         $cachePath = $filesystem->getDirectoryWrite($dir::CACHE);
 
         if (!$cachePath->isExist($dirName)) {
@@ -39,21 +44,17 @@ class Cache extends typesetsh\Resource\Cache
 
         $cacheDir = $cachePath->getAbsolutePath($dirName);
 
-        parent::__construct($cacheDir);
+        $this->cache = new typesetsh\Resource\Cache($cacheDir);
+        $this->cache->downloadLimit = $downloadLimit;
     }
 
     /**
      * @param string $uri
      *
      * @return string
-     * @throws \Exception
      */
     public function fetch(string $uri): string
     {
-        if ($this->appState->getMode() === $this->appState::MODE_DEVELOPER) {
-            $uri .= '#' . \random_int(0, 10000000);
-        }
-
-        return parent::fetch($uri);
+        return $this->cache->fetch($uri);
     }
 }

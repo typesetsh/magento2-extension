@@ -1,32 +1,30 @@
 <?php
-
 namespace Typesetsh\Pdf\Model;
 
-use jsiefer\IO;
-use jsiefer\Pdf;
+use typesetsh;
 
 /**
  * Magento uses the Zend_Pdf library
  *
- * Instead of overwriting all controllers etc. use a simple
- * wrapper for the Zend and provide the render() function.
+ * Instead of overwriting all controllers etc. we use a simple
+ * wrapper for the Zend_Pdf and overwrite the render() function.
  */
 class ZendPdf extends \Zend_Pdf
 {
     /**
-     * @var Pdf\Document
+     * @var typesetsh\Result
      */
-    private $document;
+    private $result;
 
     /**
-     * @param Pdf\Document $document
+     * @param typesetsh\Result $result
      *
      * @throws \Zend_Pdf_Exception
      */
-    public function __construct(Pdf\Document $document)
+    public function __construct(typesetsh\Result $result)
     {
         parent::__construct();
-        $this->document = $document;
+        $this->result = $result;
     }
 
     /**
@@ -38,14 +36,6 @@ class ZendPdf extends \Zend_Pdf
      */
     public function render($newSegmentOnly = false, $outputStream = null)
     {
-        $saveHandler = new Pdf\SaveHandler\TableSaveHandler();
-        if ($outputStream) {
-            throw new \Exception("Output stream not supported");
-        }
-
-        $output = IO\string();
-        $saveHandler->save($this->document, $output);
-
-        return $output->rewind()->read();
+        return $this->result->asString();
     }
 }

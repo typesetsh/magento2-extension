@@ -14,7 +14,7 @@
         "magento/module-sales": "^102.0",
         "magento/module-store": "^101.0",
         "magento/module-directory": "^100.0",
-        "typesetsh/typesetsh": "^0.6"
+        "typesetsh/typesetsh": "^0.9"
     },
     "autoload": {
         "psr-4": {
@@ -37,6 +37,7 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^8.5",
+        "phan/phan": "dev-master"
     }
 }

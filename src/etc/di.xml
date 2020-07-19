@@ -26,6 +26,14 @@
             <argument name="isIsolated" xsi:type="boolean">true</argument>
         </arguments>
     </type>
+    <type name="Typesetsh\Pdf\Model\Sales\HtmlConverter">
+        <arguments>
+            <argument name="schemeResolvers" xsi:type="array">
+                <item name="http" xsi:type="object">Typesetsh\Pdf\Model\UriResolver\Http</item>
+                <item name="https" xsi:type="object">Typesetsh\Pdf\Model\UriResolver\Http</item>
+            </argument>
+        </arguments>
+    </type>
     <virtualType name="PdfPageFactory" type="Magento\Framework\View\Result\PageFactory">
         <arguments>
             <argument name="instanceName" xsi:type="string">Typesetsh\Pdf\Model\Result\Page</argument>
