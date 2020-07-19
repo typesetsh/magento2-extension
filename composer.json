@@ -38,6 +38,8 @@
     ],
     "require-dev": {
         "phpunit/phpunit": "^8.5",
+        "friendsofphp/php-cs-fixer": "~2.14.0",
+        "magento/magento-coding-standard": "^5",
         "phan/phan": "dev-master"
     }
 }

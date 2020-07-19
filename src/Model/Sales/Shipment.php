@@ -1,4 +1,11 @@
 <?php
+/**
+ * @copyright Copyright (c) 2020 Jacob Siefer
+ *
+ * @see LICENSE
+ */
+declare(strict_types=1);
+
 namespace Typesetsh\Pdf\Model\Sales;
 
 use Magento\Framework\View;
@@ -60,6 +67,8 @@ class Shipment extends Sales\Model\Order\Pdf\Shipment
             $resultPage = $this->resultPageFactory->create(true);
             $resultPage->addHandle('pdf_default');
             $resultPage->addHandle('pdf_sales_shipment');
+
+            assert($resultPage instanceof Pdf\Model\Result\Page);
 
             $block = $resultPage->getLayout()->getBlock('shipment');
             if ($block instanceof Pdf\Block\Shipment) {

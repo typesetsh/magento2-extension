@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Typesetsh\Pdf\Model\UriResolver;
 
+use Magento\Framework\App;
 use typesetsh;
 use Typesetsh\Pdf\Model\Resource\Cache;
-use Magento\Framework\App;
 
 class Http implements typesetsh\UriResolver\Scheme
 {

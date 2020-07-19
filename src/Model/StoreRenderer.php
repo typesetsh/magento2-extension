@@ -48,6 +48,7 @@ class StoreRenderer
     {
         $this->storeEmulation->startEnvironmentEmulation($storeId, 'frontend', true);
 
+        $output = '';
         try {
             $output = $this->appState->emulateAreaCode('frontend', function () use ($action) {
                 return $action();

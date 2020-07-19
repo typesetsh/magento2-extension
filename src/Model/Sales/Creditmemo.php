@@ -1,4 +1,11 @@
 <?php
+/**
+ * @copyright Copyright (c) 2020 Jacob Siefer
+ *
+ * @see LICENSE
+ */
+declare(strict_types=1);
+
 namespace Typesetsh\Pdf\Model\Sales;
 
 use Magento\Framework\View;
@@ -60,6 +67,8 @@ class Creditmemo extends Sales\Model\Order\Pdf\Creditmemo
             $resultPage = $this->resultPageFactory->create(true);
             $resultPage->addHandle('pdf_default');
             $resultPage->addHandle('pdf_sales_creditmemo');
+
+            assert($resultPage instanceof Pdf\Model\Result\Page);
 
             $block = $resultPage->getLayout()->getBlock('creditmemo');
             if ($block instanceof Pdf\Block\Creditmemo) {

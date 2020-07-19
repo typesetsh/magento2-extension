@@ -1,4 +1,11 @@
 <?php
+/**
+ * @copyright Copyright (c) 2020 Jacob Siefer
+ *
+ * @see LICENSE
+ */
+declare(strict_types=1);
+
 namespace Typesetsh\Pdf\Model\Sales;
 
 use Magento\Framework\View;
@@ -60,6 +67,8 @@ class Invoice extends Sales\Model\Order\Pdf\Invoice
             $resultPage = $this->resultPageFactory->create(true);
             $resultPage->addHandle('pdf_default');
             $resultPage->addHandle('pdf_sales_invoice');
+
+            assert($resultPage instanceof Pdf\Model\Result\Page);
 
             $block = $resultPage->getLayout()->getBlock('invoice');
             if ($block instanceof Pdf\Block\Invoice) {

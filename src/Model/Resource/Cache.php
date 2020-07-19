@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace Typesetsh\Pdf\Model\Resource;
 
-use typesetsh;
 use Magento\Framework\App;
 use Magento\Framework\Filesystem;
+use typesetsh;
 
 /**
  * Simple resource cache using Magentos var file system.

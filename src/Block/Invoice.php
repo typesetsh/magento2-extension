@@ -1,8 +1,13 @@
 <?php
+/**
+ * @copyright Copyright (c) 2020 Jacob Siefer
+ *
+ * @see LICENSE
+ */
+declare(strict_types=1);
+
 namespace Typesetsh\Pdf\Block;
 
-use Magento\Directory;
-use Magento\Payment;
 use Magento\Sales;
 
 class Invoice extends SalesLetter
@@ -16,7 +21,7 @@ class Invoice extends SalesLetter
      * @return Sales\Model\Order\Invoice
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function getInvoice(): \Magento\Sales\Model\Order\Invoice
+    public function getInvoice(): Sales\Model\Order\Invoice
     {
         if (!$this->invoice) {
             $block = $this->getLayout()->getBlock('invoice');

@@ -1,8 +1,13 @@
 <?php
+/**
+ * @copyright Copyright (c) 2020 Jacob Siefer
+ *
+ * @see LICENSE
+ */
+declare(strict_types=1);
+
 namespace Typesetsh\Pdf\Block;
 
-use Magento\Directory;
-use Magento\Payment;
 use Magento\Sales;
 
 class Creditmemo extends SalesLetter
@@ -11,7 +16,6 @@ class Creditmemo extends SalesLetter
      * @var Sales\Model\Order\Creditmemo
      */
     private $creditmemo;
-
 
     /**
      * @return Sales\Model\Order\Creditmemo

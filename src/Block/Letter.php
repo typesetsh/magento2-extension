@@ -1,12 +1,22 @@
 <?php
+/**
+ * @copyright Copyright (c) 2020 Jacob Siefer
+ *
+ * @see LICENSE
+ */
+declare(strict_types=1);
+
 namespace Typesetsh\Pdf\Block;
 
+use Magento\Directory;
 use Magento\Framework\App;
 use Magento\Framework\View;
 use Magento\Sales;
 use Magento\Store;
-use Magento\Directory;
 
+/**
+ * @suppress PhanUndeclaredTypeProperty, PhanUndeclaredClassMethod
+ */
 class Letter extends View\Element\Template
 {
     /**
@@ -18,6 +28,7 @@ class Letter extends View\Element\Template
      * @var App\Config\ScopeConfigInterface
      */
     private $scopeConfig;
+
     /**
      * @var Directory\Model\CountryFactory
      */

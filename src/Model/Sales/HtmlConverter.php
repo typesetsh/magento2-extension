@@ -1,13 +1,18 @@
 <?php
+/**
+ * @copyright Copyright (c) 2020 Jacob Siefer
+ *
+ * @see LICENSE
+ */
+declare(strict_types=1);
+
 namespace Typesetsh\Pdf\Model\Sales;
 
-use jsiefer\Css;
-use jsiefer\IO;
-use typesetsh\Document;
-use Typesetsh\Pdf\Model;
-use typesetsh\Pdf;
-use typesetsh\Html;
 use typesetsh;
+use typesetsh\Document;
+use typesetsh\Html;
+use typesetsh\Pdf;
+use Typesetsh\Pdf\Model;
 
 class HtmlConverter
 {
@@ -31,9 +36,8 @@ class HtmlConverter
      */
     private $resolveUri;
 
-
     /**
-     * @param Html\Parser|null $parser
+     * @param Html\Parser $parser
      * @param Pdf\Renderer $renderer
      * @param Model\UriResolver\Http[] $schemeResolvers
      */
@@ -66,6 +70,6 @@ class HtmlConverter
             throw new \RuntimeException("No content added. See append()");
         }
 
-        return $this->renderer->run($this->documents,  1000);
+        return $this->renderer->run($this->documents, 1000);
     }
 }
